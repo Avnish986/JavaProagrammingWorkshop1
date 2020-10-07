@@ -11,7 +11,7 @@ public class TicTacToe {
 		System.out.println("TIC TAC TOE GAME");
 		for (int i = 1; i < BOARD.length; i++) 
 		 {
-			BOARD[i] = 'z';
+			BOARD[i] = 'e';
 		}
 	}
 	
@@ -24,22 +24,31 @@ public class TicTacToe {
 			op = sc.next().charAt(0);
 		}
 		if(op == 'O' || op =='o') {
-			System.out.println("Compuer play X");
+			System.out.println("Computer plays X");
 			playerVal = 'O';
 		}
 		else {
-			System.out.println("Computer play O");
+			System.out.println("Computer plays O");
 			playerVal = 'X';
 			
 		}
 
 	}
-	
+	static void showBoard() {
+		for(int i=0;i<BOARD.length;i++)
+		{
+			System.out.print(BOARD[i]+ " ");
+			if(i%3==0) {
+				System.out.println("");
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
 		startBoard();
 		selectOption();
+		showBoard();
 	}
 
 }
