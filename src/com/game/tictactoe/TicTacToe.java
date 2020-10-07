@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class TicTacToe {
 	static int player = 0;
 	static char playerVal;
+	static int playerAction;
 	static char[] BOARD=new char [10];
 	static boolean notFull = true;
 	static void startBoard() {
@@ -61,15 +62,33 @@ public class TicTacToe {
 		}
 
 	}
+	static int turn(String a) {
+		Random rand = new Random();
+		int t = rand.nextInt(1);
+                int c1 = -1;
+                if(a =="head") c1=0;
+                if(a=="tail") c1=1;
+		if(t==c1)
+			playerAction=0; //user turn
+		else
+			playerAction=1; //comp turn
+		
+		return playerAction;
+	}
 
-	
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
 		startBoard();
+		System.out.println("Enter head/tail");
+		Scanner p = new Scanner(System.in);
+		String value = p.nextLine();
+		if(turn(value)==0) {
+			System.out.println("User wins");
+		}
+		else {
+			System.out.println("Comp wins");
+		}
 		selectOption();
-		showBoard();
-		getPosition();
-		System.out.println("");
 		showBoard();
 	}
 
