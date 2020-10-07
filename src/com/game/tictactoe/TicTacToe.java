@@ -1,5 +1,6 @@
 package com.game.tictactoe;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -24,14 +25,15 @@ public class TicTacToe {
 			op = sc.next().charAt(0);
 		}
 		if(op == 'O' || op =='o') {
-			System.out.println("Computer plays X");
+			System.out.println("Computer alloted X");
 			playerVal = 'O';
 		}
 		else {
-			System.out.println("Computer plays O");
+			System.out.println("Computer alloted O");
 			playerVal = 'X';
 			
 		}
+		System.out.println("Player alloted "+playerVal);
 
 	}
 	static void showBoard() {
@@ -43,12 +45,27 @@ public class TicTacToe {
 			}
 		}
 	}
+	static void getPosition() {
+		Scanner i = new Scanner(System.in);
+		int pos;
+		System.out.println("Enter a pos between 1- 9 to enter your option");
+		pos=i.nextInt();
+		if(BOARD[pos]=='e') {
+			System.out.println("move can be made");
+		}
+		else {
+			System.out.println("Entered position filled already");
+			getPosition();
+		}
+	}
+
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
 		startBoard();
 		selectOption();
 		showBoard();
+		getPosition();
 	}
 
 }
