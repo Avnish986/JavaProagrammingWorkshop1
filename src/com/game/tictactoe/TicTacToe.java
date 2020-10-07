@@ -46,17 +46,20 @@ public class TicTacToe {
 		}
 	}
 	static void getPosition() {
+		int cnt=0;
 		Scanner i = new Scanner(System.in);
 		int pos;
 		System.out.println("Enter a pos between 1- 9 to enter your option");
 		pos=i.nextInt();
 		if(BOARD[pos]=='e') {
-			System.out.println("move can be made");
+			BOARD[pos]=playerVal;
+			cnt++;
 		}
 		else {
 			System.out.println("Entered position filled already");
 			getPosition();
 		}
+
 	}
 
 	
@@ -66,6 +69,8 @@ public class TicTacToe {
 		selectOption();
 		showBoard();
 		getPosition();
+		System.out.println("");
+		showBoard();
 	}
 
 }
