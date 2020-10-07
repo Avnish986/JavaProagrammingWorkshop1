@@ -35,7 +35,7 @@ public class TicTacToe {
 
 	}
 	static void showBoard() {
-		for(int i=0;i<BOARD.length;i++)
+		for(int i=1;i<BOARD.length;i++)
 		{
 			System.out.print(BOARD[i]+ " ");
 			if(i%3==0) {
