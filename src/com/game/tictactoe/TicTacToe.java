@@ -166,6 +166,9 @@ public class TicTacToe {
 			case 2:
 				System.out.println("Bye");
 				return;
+				
+				default:
+					System.out.println("Enter correct value");
 			}
 		}
 
