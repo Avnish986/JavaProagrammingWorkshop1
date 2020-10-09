@@ -11,7 +11,7 @@ public class TicTacToe {
 	static char[] BOARD=new char [10];
 	static boolean notFull = true;
 	static void startBoard() {
-		System.out.println("TIC TAC TOE GAME");
+		System.out.println("'e' means empty");
 		for (int i = 1; i < BOARD.length; i++) 
 		 {
 			BOARD[i] = 'e';
@@ -57,6 +57,16 @@ public class TicTacToe {
 			notFull = false;
 	}
 
+	static void playComp() {
+		Random rand = new Random(); 
+        int posComp = rand.nextInt(9)+1;
+        if(BOARD[posComp]=='e') {
+			BOARD[posComp]=compVal;
+		}
+		else {
+			playComp();
+		}
+	}
 	static void getPosition() {
 		
 		Scanner i = new Scanner(System.in);
@@ -73,7 +83,7 @@ public class TicTacToe {
 		}
 		}
 		else if(playerAction == 1){
-			playerAction=0;
+			playComp();
 		}
 
 	}
@@ -101,32 +111,34 @@ public class TicTacToe {
 				|| ((BOARD[2] == BOARD[5]) && (BOARD[5] == BOARD[8]) && BOARD[2]!='e')
 				|| ((BOARD[3] == BOARD[6]) && (BOARD[6] == BOARD[9])&& BOARD[3]!='e'));
 	}
-	static boolean draw(){
-		int cnt=1;
-		for(int i=1;i<BOARD.length;i++){
-			if(BOARD[i]=='e'){
-				return false;
-			}
-			else{
-				cnt++;
-			}
-		}
-			return true;
-	}
+	
 	static void play() {
 		startBoard();
 		while (notFull) {
-			System.out.println("Players turn");
-			getPosition();
-			showBoard();
-			if (win()) {
-				System.out.println("Player won");
-				return;
-			}
-			if(draw()) {
-				System.out.println("Player tie");
-				return;
-			}
+		if(playerAction == 1) {
+			
+		System.out.println("Comp turn");
+		getPosition();
+		showBoard();
+		playerAction = 0;
+		if (win()) {
+		System.out.println("Computer won");
+		return;
+		}
+		}
+		else if(playerAction == 0) {
+		System.out.println("Players turn");
+		getPosition();
+		showBoard();
+		playerAction = 1;
+		if (win()) {
+		System.out.println("Player won");
+		return;
+		}
+		}
+		}
+		if(!notFull && !win()) {
+			System.out.println("Draw");
 		}
 	}
 	public static void main(String[] args) {
@@ -143,11 +155,7 @@ public class TicTacToe {
 		}
 		selectOption();
 		play();
-		
-//		showBoard();
-//		getPosition();
-//		System.out.println("");
-//		showBoard();
+
 	}
 
 }
