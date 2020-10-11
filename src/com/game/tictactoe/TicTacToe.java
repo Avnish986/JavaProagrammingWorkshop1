@@ -55,13 +55,63 @@ public class TicTacToe {
 			notFull = false;
 	}
 
-	static void playComp() {
-		Random rand = new Random();
-		int posComp = rand.nextInt(9) + 1;
-		if (BOARD[posComp] == 'e') {
-			BOARD[posComp] = compVal;
+	public static void playComp() {
+		int position = 0;
+		for (int i = 1; i < BOARD.length && BOARD[i] == 'e'; i++) {
+			if (i == 1) {
+				if ((BOARD[2] == compVal && BOARD[3] == compVal) || (BOARD[4] == compVal && BOARD[7] == compVal)
+						|| (BOARD[5] == compVal && BOARD[9] == compVal))
+					position = i;
+			}
+			if (i == 2) {
+				if ((BOARD[1] == compVal && BOARD[3] == compVal) || (BOARD[5] == compVal && BOARD[8] == compVal))
+					position = i;
+			}
+			if (i == 3) {
+				if ((BOARD[2] == compVal && BOARD[1] == compVal) || (BOARD[6] == compVal && BOARD[9] == compVal)
+						|| (BOARD[5] == compVal && BOARD[7] == compVal))
+					position = i;
+			}
+			if (i == 4) {
+				if ((BOARD[1] == compVal && BOARD[7] == compVal) || (BOARD[5] == compVal && BOARD[6] == compVal))
+					position = i;
+			}
+			if (i == 5) {
+				if ((BOARD[1] == compVal && BOARD[9] == compVal) || (BOARD[3] == compVal && BOARD[7] == compVal)
+						|| (BOARD[2] == compVal && BOARD[8] == compVal) || (BOARD[4] == compVal && BOARD[6] == compVal))
+					position = i;
+			}
+			if (i == 6) {
+				if ((BOARD[3] == compVal && BOARD[9] == compVal) || (BOARD[5] == compVal && BOARD[4] == compVal))
+					position = i;
+			}
+			if (i == 7) {
+				if ((BOARD[1] == compVal && BOARD[4] == compVal) || (BOARD[9] == compVal && BOARD[8] == compVal)
+						|| (BOARD[5] == compVal && BOARD[3] == compVal))
+					position = i;
+			}
+			if (i == 8) {
+				if ((BOARD[2] == compVal && BOARD[5] == compVal) || (BOARD[7] == compVal && BOARD[9] == compVal))
+					position = i;
+			}
+			if (i == 9) {
+				if ((BOARD[7] == compVal && BOARD[8] == compVal) || (BOARD[3] == compVal && BOARD[6] == compVal)
+						|| (BOARD[5] == compVal && BOARD[1] == compVal))
+					position = i;
+			} else
+				position = 0;
+		}
+		if (position != 0) {
+			BOARD[position] = compVal;
 		} else {
-			playComp();
+			int flag = 0;
+			while (flag == 0) {
+				int rand = (int) (Math.random() * 10) % 9 + 1;
+				if (BOARD[rand] == 'e') {
+					BOARD[rand] = compVal;
+					flag = 1;
+				}
+			}
 		}
 	}
 
@@ -143,34 +193,17 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
-		while (true) {
-			System.out.println("Press '1' to play");
-			System.out.println("Press '2' exit");
-			Scanner sc = new Scanner(System.in);
-			int x = sc.nextInt();
-			switch (x) {
-			case 1:
-				startBoard();
-				System.out.println("Enter head/tail");
-				Scanner p = new Scanner(System.in);
-				String value = p.nextLine();
-				if (turn(value) == 0) {
-					System.out.println("User wins");
-				} else {
-					System.out.println("Comp wins");
-				}
-				selectOption();
-				play();
-				break;
-
-			case 2:
-				System.out.println("Bye");
-				return;
-				
-				default:
-					System.out.println("Enter correct value");
-			}
+		startBoard();
+		System.out.println("Enter head/tail");
+		Scanner p = new Scanner(System.in);
+		String value = p.nextLine();
+		if (turn(value) == 0) {
+			System.out.println("User wins");
+		} else {
+			System.out.println("Comp wins");
 		}
+		selectOption();
+		play();
 
 	}
 
