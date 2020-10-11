@@ -142,29 +142,36 @@ public class TicTacToe {
 
 	public static int blockPlayer() {
 		int position = ifPossibleToWin(playerVal);
-		if (position == 0) 
+		if (position == 0)
 			position = takeCorner();
 		return position;
 	}
 
 	public static int takeCorner() {
-		if(isAvailable(1))
+		if (isAvailable(1))
 			return 1;
-		else if(isAvailable(3))
+		else if (isAvailable(3))
 			return 3;
-		else if(isAvailable(7))
+		else if (isAvailable(7))
 			return 7;
-		else if(isAvailable(9))
+		else if (isAvailable(9))
 			return 9;
+		else
+			return notCorner();
+	}
+
+	public static int notCorner() {
+		if (isAvailable(5))
+			return 5;
 		else {
 			int flag = 0, position = 0;
-			while(flag == 0) {
-				 position = ((int)Math.floor(Math.random()* 10) % 9) + 1;
-				if(isAvailable(position))
+			while (flag == 0) {
+				position = ((int) Math.floor(Math.random() * 10) % 9) + 1;
+				if (isAvailable(position))
 					flag = 1;
 			}
 			return position;
-		}	
+		}
 	}
 
 	public static void playerMove() {
@@ -212,7 +219,6 @@ public class TicTacToe {
 			playerTurn();
 	}
 
-	
 	static int turn(String a) {
 		Random rand = new Random();
 		int t = rand.nextInt(2);
@@ -241,7 +247,6 @@ public class TicTacToe {
 				|| ((BOARD[3] == BOARD[6]) && (BOARD[6] == BOARD[9]) && BOARD[3] != 'e'));
 	}
 
-	
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
 		startBoard();
