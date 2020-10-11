@@ -249,18 +249,35 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
-		startBoard();
-		System.out.println("Enter head/tail");
-		Scanner p = new Scanner(System.in);
-		String value = p.nextLine();
-		if (turn(value) == 0) {
-			System.out.println("User wins");
-			selectOption();
-			playerTurn();
-		} else {
-			System.out.println("Comp wins");
-			selectOption();
-			computerTurn();
+		while (true) {
+			System.out.println("Press '1' to play");
+			System.out.println("Press '2' exit");
+			Scanner sc = new Scanner(System.in);
+			int x = sc.nextInt();
+			switch (x) {
+			case 1:
+				startBoard();
+				System.out.println("Enter head/tail");
+				Scanner p = new Scanner(System.in);
+				String value = p.nextLine();
+				if (turn(value) == 0) {
+					System.out.println("User wins");
+					selectOption();
+					playerTurn();
+				} else {
+					System.out.println("Comp wins");
+					selectOption();
+					computerTurn();
+				}
+				break;
+
+			case 2:
+				System.out.println("Bye");
+				return;
+
+			default:
+				System.out.println("Enter correct value");
+			}
 		}
 
 	}
